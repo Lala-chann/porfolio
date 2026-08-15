@@ -1,0 +1,9 @@
+1. transleting all procces and making sure that en,kr,az is supporting for every section
+2. adding resume button, and one more button inside "turning data into .."
+3. Introduction part is kinda messy need to fix 
+4. add more technical expertise in the future 
+5. Add uni link and drone securty link in Introduction
+6. the branch feature looks messy, fix the structure of line
+7. add: clicking the headline inside branch and going to auto the project section
+8. Cover for projects
+9. Add video and description for drone projects

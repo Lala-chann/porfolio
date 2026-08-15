@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — Navbar</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="light" class="is-loading">
+  <div class="loader-screen" id="loaderScreen" aria-live="polite" aria-label="Loading portfolio">
+    <div class="ai-matrix-loader" role="img" aria-label="Binary matrix loading animation">
+      <div class="digit">0</div>
+      <div class="digit">1</div>
+      <div class="digit">0</div>
+      <div class="digit">1</div>
+      <div class="digit">1</div>
+      <div class="digit">0</div>
+      <div class="digit">0</div>
+      <div class="digit">1</div>
+      <div class="glow"></div>
+    </div>
+  </div>
+
+  <div class="site-shell">
+    <nav>
+      <div class="nav-brand" aria-label="Site logo">
+        <svg class="site-logo" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 4.5a3 3 0 0 0-2.567 4.554a3.001 3.001 0 0 0 0 5.893M7 4.5a2.5 2.5 0 0 1 5 0v15a2.5 2.5 0 0 1-5 0a3 3 0 0 1-2.567-4.553M7 4.5c0 .818.393 1.544 1 2m-3.567 8.447A3 3 0 0 1 6 13.67m13.25-8.92L17 7h-2m3.5-2.25a.75.75 0 1 0 1.5 0a.75.75 0 0 0-1.5 0m.75 14.5L17 17h-2m3.5 2.25a.75.75 0 1 1 1.5 0a.75.75 0 0 1-1.5 0m.75-7.25H15m3.5 0a.75.75 0 1 0 1.5 0a.75.75 0 0 0-1.5 0" color="currentColor"/>
+        </svg>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="#about" data-i18n="nav.about">About</a></li>
+        <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+        <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+        <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+
+      <div class="control-cluster">
+        <button class="logo-toggle" id="themeToggle" aria-label="Toggle light and dark theme">
+          <svg id="logoIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g id="sunGroup" class="icon-group">
+              <circle cx="12" cy="12" r="5" fill="var(--sun-color)" />
+              <g stroke="var(--sun-color)" stroke-width="1.6" stroke-linecap="round">
+                <line x1="12" y1="1.5" x2="12" y2="4" />
+                <line x1="12" y1="20" x2="12" y2="22.5" />
+                <line x1="1.5" y1="12" x2="4" y2="12" />
+                <line x1="20" y1="12" x2="22.5" y2="12" />
+                <line x1="4.2" y1="4.2" x2="6" y2="6" />
+                <line x1="18" y1="18" x2="19.8" y2="19.8" />
+                <line x1="4.2" y1="19.8" x2="6" y2="18" />
+                <line x1="18" y1="6" x2="19.8" y2="4.2" />
+              </g>
+            </g>
+            <path id="moonGroup" class="icon-group" d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" fill="var(--moon-color)" />
+          </svg>
+        </button>
+
+        <div class="lang-switch" id="langSwitch">
+          <button class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false">
+            <span id="langBtnLabel">EN</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="lang-dropdown" id="langDropdown">
+            <button class="lang-option active" data-lang="en">English <span class="lang-code">EN</span></button>
+            <button class="lang-option" data-lang="az">Azərbaycanca <span class="lang-code">AZ</span></button>
+            <button class="lang-option" data-lang="ko">한국어 <span class="lang-code">KO</span></button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <canvas class="hero-network" id="heroNetwork" aria-hidden="true"></canvas>
+
+      <div class="hero-left">
+        <h1 class="hero-title">Turning Data Into</h1>
+        <div class="typewriter-wrap">
+          <span id="typed-text">Action</span><span class="cursor">_</span>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="about" class="about">
+      <canvas class="about-network" id="aboutNetwork" aria-hidden="true"></canvas>
+      <div class="about-left">
+        <span class="label-pill">About Me</span>
+        <p class="about-text">
+          I am Lala Mammadov, a second-year student in Korea majoring in <strong>Artificial Intelligence and Big Data</strong>. I learn by building projects to become an AI engineer, based on practical projects and implementing them. My current project is to <strong>control a drone with artificial intelligence</strong> using hand detection and face tracking technology.
+        </p>
+      </div>
+      <div class="about-gallery">
+        <div class="carousel" id="aboutCarousel">
+          <div class="carousel-track" id="carouselTrack">
+            <div class="carousel-slide active" style="background-image: url('assests/images/photo2.jpeg');"></div>
+            <div class="carousel-slide" style="background-image: url('assests/images/photo1.jpeg');"></div>
+          </div>
+          <div class="carousel-overlay" id="carouselOverlay">
+            <span class="carousel-arrow" id="carouselArrow"></span>
+          </div>
+          <div class="carousel-dots" id="carouselDots"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="experience" id="experience">
+      <canvas class="experience-network" id="experienceNetwork" aria-hidden="true"></canvas>
+      <span class="label-pill">Experience</span>
+      <h2 class="exp-heading">Work Experience</h2>
+      <p class="exp-sub">Fix this part later</p>
+
+      <div class="exp-carousel">
+        <button class="exp-arrow exp-arrow-left" id="expPrev" aria-label="Previous experience">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <div class="exp-track" id="expTrack">
+          <div class="exp-slide">
+            <div class="exp-card">
+              <div class="exp-top">
+                <div class="exp-identity">
+                  <div class="exp-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="exp-role">AI &amp; Drone Control Volunteer</p>
+                    <p class="exp-org">National Consortium for Drone Security · Volunteer</p>
+                  </div>
+                </div>
+                <p class="exp-location">Soonchunhyang University, South Korea</p>
+              </div>
+
+              <hr class="exp-divider">
+
+              <ul class="exp-bullets">
+                <li>Built real-time gesture-driven drone controls using computer vision and motion tracking.</li>
+                <li>Combined hand and face detection pipelines to translate visual input into stable flight commands.</li>
+              </ul>
+
+              <div class="exp-tags">
+                <span class="exp-tag">DeepFace</span>
+                <span class="exp-tag">OpenCV</span>
+                <span class="exp-tag">DroneKit</span>
+                <span class="exp-tag">Raspberry Pi</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-slide">
+            <div class="exp-card exp-card-empty">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 5v14M5 12h14"></path>
+              </svg>
+              <p>More experience coming soon.</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="exp-arrow exp-arrow-right" id="expNext" aria-label="Next experience">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <div class="exp-dots" aria-label="Experience slide navigation">
+        <button class="exp-dot active" type="button" data-index="0" aria-label="Go to slide 1"></button>
+        <button class="exp-dot" type="button" data-index="1" aria-label="Go to slide 2"></button>
+      </div>
+    </section>
+
+    <section class="skills-section" id="skills">
+      <canvas class="skills-network" id="skillsNetwork" aria-hidden="true"></canvas>
+      <h2 class="skills-heading" data-i18n="skills.heading">Technical Expertise</h2>
+      <span class="label-pill" data-i18n="skills.pill">Skills</span>
+      <p class="skills-sub" data-i18n="skills.sub">Practical technologies I'm using and actively learning to build real, hands-on projects.</p>
+
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-card-head">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a4 4 0 0 0-4 4v1a3 3 0 0 0-2 5 3 3 0 0 0 2 5.5V19a3 3 0 0 0 6 0V6a4 4 0 0 0-2-4Z"></path>
+            </svg>
+            <h3>AI &amp; Agents</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag-upcoming" data-i18n="skills.upcoming">Upcoming — learning next</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-head">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+            <h3>Backend</h3>
+          </div>
+          <div class="skill-tags">
+            <button class="skill-tag">Python</button>
+            <button class="skill-tag">REST APIs</button>
+            <button class="skill-tag">JSON</button>
+            <button class="skill-tag">Uvicorn</button>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-head">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3 17 9 11 13 15 21 7"></polyline>
+              <polyline points="14 7 21 7 21 14"></polyline>
+            </svg>
+            <h3>Machine Learning</h3>
+          </div>
+          <div class="skill-tags">
+            <button class="skill-tag">OpenCV</button>
+            <button class="skill-tag">Scikit-learn</button>
+            <button class="skill-tag">NumPy</button>
+            <button class="skill-tag">Pandas</button>
+            <button class="skill-tag">Matplotlib</button>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-head">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse cx="12" cy="5" rx="8" ry="3"></ellipse>
+              <path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"></path>
+              <path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"></path>
+            </svg>
+            <h3>Databases</h3>
+          </div>
+          <div class="skill-tags">
+            <button class="skill-tag">SQL</button>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-head">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+              <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+              <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+              <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+            </svg>
+            <h3>DevOps</h3>
+          </div>
+          <div class="skill-tags">
+            <button class="skill-tag">Docker</button>
+            <button class="skill-tag">Linux CLI</button>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-head">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+            </svg>
+            <h3>Tools</h3>
+          </div>
+          <div class="skill-tags">
+            <button class="skill-tag">Git</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="works-section" id="projects">
+      <canvas class="works-network" id="worksNetwork" aria-hidden="true"></canvas>
+      <h2 class="skills-heading" data-i18n="works.heading">What I've Built</h2>
+      <span class="label-pill" data-i18n="works.pill">Projects</span>
+      <p class="skills-sub" data-i18n="works.sub">Personal experiments on one side, hands-on drone engineering on the other.</p>
+
+      <div class="tooltip-container">
+        <div class="trigger-wrapper">
+          <svg class="branch-path-svg" viewBox="0 0 520 70">
+            <path
+              class="branch-line line-left"
+              d="M260,0 C260,30 60,30 60,70"
+              fill="none"
+              stroke="#a371f7"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+            <path
+              class="branch-line line-right"
+              d="M260,0 C260,30 460,30 460,70"
+              fill="none"
+              stroke="#238636"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+            <circle
+              cx="60"
+              cy="70"
+              r="4"
+              class="branch-dot dot-left"
+              fill="#a371f7"
+            ></circle>
+            <circle
+              cx="460"
+              cy="70"
+              r="4"
+              class="branch-dot dot-right"
+              fill="#238636"
+            ></circle>
+          </svg>
+
+          <button class="merge-btn" data-i18n="works.btn">Core Works (Click here)</button>
+        </div>
+
+        <div class="tooltips-wrapper">
+          <div class="tooltip-content" style="border-left: 2px solid #a371f7;">
+            <div class="tooltip-header" style="color: #a371f7;">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M8 4a4 4 0 1 1 0 8 4 4 0 0 1 0-8Z"></path>
+              </svg>
+              <span data-i18n="works.mine">AI projects</span>
+            </div>
+            <ul class="tooltip-list">
+              <li data-project="linux" data-project-link data-i18n="works.mine1">AI-powered Linux CLI</li>
+              <li data-project="keyboard" data-project-link data-i18n="works.mine2">Real-time keyboard detection</li>
+            </ul>
+          </div>
+
+          <div class="tooltip-content" style="border-left: 2px solid #238636;">
+            <div class="tooltip-header" style="color: #238636;">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+                <path
+                  d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"
+                ></path>
+              </svg>
+              <span data-i18n="works.drone">Drone projects</span>
+            </div>
+            <ul class="tooltip-list">
+              <li data-project="drone" data-project-link data-i18n="works.drone1">Controlling drone with hand detection</li>
+              <li data-project="drone" data-project-link data-i18n="works.drone2">Finding drone's owner with face detection</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="projects-grid">
+        <div class="project-card" id="project-linux-ai" data-project="linux">
+          <div class="project-preview terminal"><span class="term-prompt">$</span> <span class="term-cmd">ask "what is the CLI for deleting a file"</span>
+<span class="term-out">The CLI command for deleting a file is:
+rm filename</span>
+Explanation: The rm command removes
+a file from the system.</div>
+          <div class="project-body">
+            <h3 class="project-title" data-i18n="proj.linux.title">AI-Powered Linux CLI Assistant</h3>
+            <p class="project-desc" data-i18n="proj.linux.desc">A command-line tool that answers Linux/CLI questions using an LLM via the Groq API. Ask in plain English, get back the exact command and a short explanation — it never executes anything on its own.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">Groq API</span>
+              <span class="project-tag">CLI</span>
+            </div>
+            <a class="project-source" href="https://github.com/Lala-chann/Linux-AI" target="_blank" rel="noopener">
+              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+              <span data-i18n="proj.source">Source Code</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card" id="project-keyboard" data-project="keyboard">
+          <div class="project-preview icon-preview">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="6" width="20" height="12" rx="2"></rect>
+              <path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 14h8"></path>
+              <path d="M17 2l-3 3M20 5l-4-1"></path>
+            </svg>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title" data-i18n="proj.kb.title">Virtual Hand-Tracking Keyboard</h3>
+            <p class="project-desc" data-i18n="proj.kb.desc">A virtual keyboard built with MediaPipe and OpenCV. It tracks 21 hand landmarks in real time so users can "press" keys with their index finger — and launch applications directly from the virtual keyboard.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">MediaPipe</span>
+              <span class="project-tag">OpenCV</span>
+            </div>
+            <a class="project-source" href="https://github.com/Lala-chann/Real-Time-Keyboard-Detection" target="_blank" rel="noopener">
+              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+              <span data-i18n="proj.source">Source Code</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card upcoming">
+          <div class="project-preview upcoming-preview">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title" data-i18n="proj.upcoming.title">More Projects Coming Soon</h3>
+            <p class="project-desc" data-i18n="proj.upcoming.desc">This space is reserved for what I build next.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="project-modal-overlay" id="projectModal" aria-hidden="true">
+    <div class="project-modal" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
+      <button class="project-modal-close" id="projectModalClose" aria-label="Close project details">×</button>
+      <div class="project-modal-header">
+        <span class="project-modal-badge" id="projectModalBadge">Project</span>
+        <h3 id="projectModalTitle">Project title</h3>
+      </div>
+      <p id="projectModalDescription"></p>
+      <div class="project-modal-tags" id="projectModalTags"></div>
+      <a class="project-modal-link" id="projectModalLink" href="#" target="_blank" rel="noopener">Open source</a>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
+ 
