@@ -34,7 +34,6 @@ let charIndex = 0;
 let isDeleting = false;
 const typeSpeed = 70;
 const deleteSpeed = 100;
-const holdDelay = 1500;
 
 function typeWriter() {
   if (!typedText) return;
@@ -54,7 +53,7 @@ function typeWriter() {
     charIndex += 1;
     if (charIndex === currentText.length) {
       isDeleting = true;
-      setTimeout(typeWriter, holdDelay);
+      setTimeout(typeWriter, deleteSpeed);
       return;
     }
     setTimeout(typeWriter, typeSpeed);
@@ -125,6 +124,12 @@ function initProjectModal() {
     if (!projectSection) return;
     projectSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
+
+  document.querySelectorAll('.hero-cta[data-target="projects"]').forEach((button) => {
+    button.addEventListener('click', () => {
+      scrollToProjectsSection();
+    });
+  });
 
   const projectMap = {
     linux: {
@@ -226,7 +231,8 @@ function initLanguageSwitcher() {
       'proj.kb.title': 'Virtual Hand-Tracking Keyboard',
       'proj.kb.desc': 'A virtual keyboard built with MediaPipe and OpenCV. It tracks 21 hand landmarks in real time so users can "press" keys with their index finger — and launch applications directly from the virtual keyboard.',
       'proj.upcoming.title': 'More Projects Coming Soon',
-      'proj.upcoming.desc': 'This space is reserved for what I build next.'
+      'proj.upcoming.desc': 'This space is reserved for what I build next.',
+      'hero.desc': 'I\'m Mammadova Lala, a second-year Artificial Intelligence &amp; Big Data student at <a href="https://home.sch.ac.kr/en/index.jsp" target="_blank" rel="noopener">Soonchunhyang University</a>, South Korea. I learn by building — real, hands-on projects rather than just theory. I\'m a member of the <a href="https://www.asiae.co.kr/en/article/2025021711292185228" target="_blank" rel="noopener">Drone Security Strategy Research Institute\'s</a> national drone security consortium, where my current project applies AI to control a drone and solve real-world problems.'
     },
     az: {
       'nav.about': 'Haqqımda',
@@ -244,7 +250,8 @@ function initLanguageSwitcher() {
       'proj.kb.title': 'Virtual Əl İzləmə Klaviaturası',
       'proj.kb.desc': 'MediaPipe və OpenCV ilə qurulmuş virtual klaviatura. O, real vaxtda 21 əl markerini izləyir və istifadəçi index barmağı ilə düymələri "basır" — virtual klaviaturadan birbaşa tətbiqləri də işə sala bilir.',
       'proj.upcoming.title': 'Daha çox layihə yaxın zamanda',
-      'proj.upcoming.desc': 'Bu yer növbəti qurduğum layihələr üçün ayrılıb.'
+      'proj.upcoming.desc': 'Bu yer növbəti qurduğum layihələr üçün ayrılıb.',
+      'hero.desc': 'Mən Məmmədova Lalayam, Cənubi Koreyada, <a href="https://home.sch.ac.kr/en/index.jsp" target="_blank" rel="noopener">Soonchunhyang Universitetində</a> Süni İntellekt və Big Data üzrə 2-ci kurs tələbəsiyəm. Öyrənməyi real, praktiki layihələr qurmaqla edirəm — sadəcə nəzəriyyə ilə deyil. <a href="https://www.asiae.co.kr/en/article/2025021711292185228" target="_blank" rel="noopener">Dron Təhlükəsizliyi Strategiyası Tədqiqat İnstitutunun</a> milli dron təhlükəsizliyi konsorsiumunun üzvüyəm və hazırkı layihəm dronu idarə etmək və real problemləri həll etmək üçün süni intellekt tətbiq etməkdir.'
     },
     ko: {
       'nav.about': '소개',
@@ -262,7 +269,8 @@ function initLanguageSwitcher() {
       'proj.kb.title': '가상 손 추적 키보드',
       'proj.kb.desc': 'MediaPipe와 OpenCV로 만든 가상 키보드입니다. 실시간으로 21개의 손 랜드마크를 추적해 검지로 키를 누르며, 가상 키보드에서 직접 애플리케이션을 실행할 수 있습니다.',
       'proj.upcoming.title': '추가 프로젝트 공개 예정',
-      'proj.upcoming.desc': '다음에 만드는 프로젝트를 위해 이 공간을 남겨두고 있습니다.'
+      'proj.upcoming.desc': '다음에 만드는 프로젝트를 위해 이 공간을 남겨두고 있습니다.',
+      'hero.desc': '저는 맘마도바 랄라이며, 한국 <a href="https://home.sch.ac.kr/en/index.jsp" target="_blank" rel="noopener">순천향대학교</a>에서 인공지능 및 빅데이터를 전공하는 2학년 학생입니다. 저는 이론보다 실제 프로젝트를 직접 만들며 배웁니다. 저는 <a href="https://www.asiae.co.kr/en/article/2025021711292185228" target="_blank" rel="noopener">드론 보안 전략 연구소</a>의 국가 드론 보안 컨소시엄 회원이며, 현재 AI를 활용해 드론을 제어하고 실제 문제를 해결하는 프로젝트를 진행하고 있습니다.'
     }
   };
 
@@ -280,6 +288,11 @@ function initLanguageSwitcher() {
     document.querySelectorAll('[data-i18n]').forEach((el) => {
       const key = el.getAttribute('data-i18n');
       if (dict[key]) el.textContent = dict[key];
+    });
+
+    document.querySelectorAll('[data-i18n-html]').forEach((el) => {
+      const key = el.getAttribute('data-i18n-html');
+      if (dict[key]) el.innerHTML = dict[key];
     });
 
     langBtnLabel.textContent = lang.toUpperCase();
