@@ -375,6 +375,143 @@ function initAboutCarousel() {
   setActiveIndex(0);
 }
 
+(function () {
+  const container = document.getElementById('droneCarousel');
+  const backdrop = document.getElementById('droneBackdrop');
+  if (!container || !backdrop) return;
+
+  const bars = Array.from(container.querySelectorAll('.magnetic-bar'));
+  const n = bars.length;
+
+  const COLLAPSED_W = 120;
+  const HOVER_W = 200;
+  const COLLAPSED_H = 320;
+  const HOVER_H = 360;
+  const GAP = 18;
+  const INFLUENCE = 210;
+  const OPEN_SIZE = 520;
+
+  let target = bars.map(() => 0);
+  let cur = bars.map(() => 0);
+  let raf = null;
+  let openIndex = null;
+  let closeTimer = null;
+
+  function applySizes() {
+    bars.forEach((bar, i) => {
+      let w;
+      let h;
+      if (openIndex !== null) {
+        if (i === openIndex) {
+          w = OPEN_SIZE;
+          h = OPEN_SIZE;
+        } else {
+          w = COLLAPSED_W;
+          h = COLLAPSED_H;
+        }
+      } else {
+        const f = cur[i] || 0;
+        w = COLLAPSED_W + (HOVER_W - COLLAPSED_W) * f;
+        h = COLLAPSED_H + (HOVER_H - COLLAPSED_H) * f;
+      }
+      bar.style.width = `${w}px`;
+      bar.style.height = `${h}px`;
+    });
+  }
+
+  function loop() {
+    let moving = false;
+    for (let i = 0; i < n; i++) {
+      const d = (target[i] || 0) - cur[i];
+      if (Math.abs(d) > 0.001) {
+        cur[i] += d * 0.2;
+        moving = true;
+      } else {
+        cur[i] = target[i] || 0;
+      }
+    }
+    applySizes();
+    raf = moving ? requestAnimationFrame(loop) : null;
+  }
+
+  function ensureLoop() {
+    if (!raf) raf = requestAnimationFrame(loop);
+  }
+
+  function setTargetFromCursor(clientX) {
+    const rect = container.getBoundingClientRect();
+    const cx = clientX - rect.left;
+    const totalBase = n * COLLAPSED_W + (n - 1) * GAP;
+    const startX = (rect.width - totalBase) / 2;
+    target = bars.map((_, i) => {
+      const center = startX + i * (COLLAPSED_W + GAP) + COLLAPSED_W / 2;
+      const dist = Math.abs(cx - center);
+      const f = Math.max(0, 1 - dist / INFLUENCE);
+      return f * f * (3 - 2 * f);
+    });
+    ensureLoop();
+  }
+
+  container.addEventListener('mousemove', (event) => {
+    if (openIndex !== null) return;
+    setTargetFromCursor(event.clientX);
+  });
+
+  container.addEventListener('mouseleave', () => {
+    if (openIndex !== null) return;
+    target = bars.map(() => 0);
+    ensureLoop();
+  });
+
+  function enableTransition() {
+    bars.forEach((bar) => {
+      bar.style.transition = 'width 0.3s ease-in-out, height 0.3s ease-in-out, filter 0.3s ease-in-out, opacity 0.3s ease-in-out';
+    });
+  }
+
+  function disableTransition() {
+    bars.forEach((bar) => {
+      bar.style.transition = 'none';
+    });
+  }
+
+  function openBar(index) {
+    enableTransition();
+    openIndex = index;
+    backdrop.classList.add('active');
+    bars.forEach((bar, idx) => {
+      bar.classList.toggle('open', idx === index);
+      bar.classList.toggle('blurred', idx !== index);
+    });
+    applySizes();
+  }
+
+  function closeBar() {
+    enableTransition();
+    openIndex = null;
+    backdrop.classList.remove('active');
+    bars.forEach((bar) => bar.classList.remove('open', 'blurred'));
+    target = bars.map(() => 0);
+    cur = bars.map(() => 0);
+    applySizes();
+    clearTimeout(closeTimer);
+    closeTimer = setTimeout(disableTransition, 320);
+  }
+
+  bars.forEach((bar, i) => {
+    bar.addEventListener('click', (event) => {
+      event.stopPropagation();
+      if (openIndex === i) {
+        closeBar();
+      } else {
+        openBar(i);
+      }
+    });
+  });
+
+  backdrop.addEventListener('click', closeBar);
+  applySizes();
+})();
 
 /* ASCII rain background for the hero section */
 (function () {
