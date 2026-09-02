@@ -1,5 +1,7 @@
-1. transleting all procces and making sure that en,kr,az is supporting for every section
-4. add more technical expertise in the future 
-6. the branch feature looks messy, fix the structure of line
-8. Cover for projects
+
+8. add cover photo for projects
 9. Add video and description for drone projects
+10. Drone project part looks messy.Fix it and add description
+15. there is one more bug inside download resume. It shows 20mg but I still did not add any resume.
+16. When I click drone projects, go to directly to Drone projects
+17. there are some weird translation, fix them.

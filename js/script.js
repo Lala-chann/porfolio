@@ -4,7 +4,10 @@ const hero = document.querySelector('.hero');
 const heroCanvas = document.getElementById('heroNetwork');
 const aboutSection = document.getElementById('about');
 const aboutCanvas = document.getElementById('aboutNetwork');
+const contactSection = document.getElementById('contact');
+const contactCanvas = document.getElementById('contactNetwork');
 const loaderScreen = document.getElementById('loaderScreen');
+let activeLanguage = 'en';
 
 function hideLoader() {
   body.classList.remove('is-loading');
@@ -27,7 +30,7 @@ if (themeToggle) {
 
 setTheme('light');
 
-const typewriterTexts = ["Action", "Intelligence", "Automation", "Predictions"];
+let typewriterTexts = ["Action", "Intelligence", "Automation", "Predictions"];
 const typedText = document.getElementById('typed-text');
 let typewriterIndex = 0;
 let charIndex = 0;
@@ -138,7 +141,19 @@ function initProjectModal() {
       description: 'A command-line tool that answers Linux and terminal questions using an LLM via the Groq API. It turns plain English prompts into exact commands with a short explanation, without executing anything on its own.',
       tags: ['Python', 'Groq API', 'CLI', 'AI'],
       link: 'https://github.com/Lala-chann/Linux-AI',
-      linkText: 'Open source'
+      linkText: 'Open source',
+      az: {
+        badge: 'Süni intellekt layihəsi',
+        title: 'Süni intellektlə Linux CLI assistenti',
+        description: 'Groq API vasitəsilə LLM-dən istifadə edərək Linux və terminal suallarına cavab verən komanda sətri aləti. Sadə dildə soruşun, dəqiq əmri və qısa izahı əldə edin; alət əmrləri özü icra etmir.',
+        linkText: 'Mənbə kodu'
+      },
+      ko: {
+        badge: '인공지능 프로젝트',
+        title: 'AI 기반 리눅스 CLI 도우미',
+        description: 'Groq API의 LLM을 활용해 Linux와 터미널 질문에 답하는 명령줄 도구입니다. 자연어로 질문하면 정확한 명령과 간단한 설명을 제공하며, 명령을 직접 실행하지 않습니다.',
+        linkText: '소스 코드'
+      }
     },
     keyboard: {
       badge: 'Vision project',
@@ -146,7 +161,19 @@ function initProjectModal() {
       description: 'A real-time keyboard system built with MediaPipe and OpenCV. It tracks hand landmarks and lets the user press virtual keys with fingertip motion, plus launch apps directly from the keyboard interface.',
       tags: ['Python', 'MediaPipe', 'OpenCV', 'Computer Vision'],
       link: 'https://github.com/Lala-chann/Real-Time-Keyboard-Detection',
-      linkText: 'Open source'
+      linkText: 'Open source',
+      az: {
+        badge: 'Görüntü layihəsi',
+        title: 'Virtual əl izləmə klaviaturası',
+        description: 'MediaPipe və OpenCV ilə hazırlanmış real vaxt klaviatura sistemi. Əl nöqtələrini izləyir və barmaq hərəkəti ilə virtual düymələrə basmağa imkan verir.',
+        linkText: 'Mənbə kodu'
+      },
+      ko: {
+        badge: '컴퓨터 비전 프로젝트',
+        title: '가상 손 추적 키보드',
+        description: 'MediaPipe와 OpenCV로 만든 실시간 키보드 시스템입니다. 손 랜드마크를 추적해 손가락 움직임으로 가상 키를 누르고 애플리케이션을 실행할 수 있습니다.',
+        linkText: '소스 코드'
+      }
     },
     drone: {
       badge: 'Drone project',
@@ -158,15 +185,20 @@ function initProjectModal() {
     }
   };
 
+  const supportsModal = (projectId) => projectId && projectId !== 'drone';
+
   const openProject = (projectId) => {
+    if (!supportsModal(projectId)) return;
+
     const project = projectMap[projectId];
     if (!project) return;
 
-    modalTitle.textContent = project.title;
-    modalBadge.textContent = project.badge;
-    modalDescription.textContent = project.description;
+    const localizedProject = project[activeLanguage] || project;
+    modalTitle.textContent = localizedProject.title;
+    modalBadge.textContent = localizedProject.badge;
+    modalDescription.textContent = localizedProject.description;
     modalLink.href = project.link;
-    modalLink.textContent = project.linkText;
+    modalLink.textContent = localizedProject.linkText;
     modalTags.innerHTML = project.tags.map((tag) => `<span class="project-modal-tag">${tag}</span>`).join('');
     modal.classList.add('show');
     modal.setAttribute('aria-hidden', 'false');
@@ -180,6 +212,8 @@ function initProjectModal() {
   };
 
   document.querySelectorAll('[data-project-link]').forEach((element) => {
+    if (!supportsModal(element.dataset.project)) return;
+
     element.addEventListener('click', (event) => {
       event.preventDefault();
       const projectId = element.dataset.project;
@@ -191,6 +225,8 @@ function initProjectModal() {
   });
 
   document.querySelectorAll('[data-project]').forEach((element) => {
+    if (!supportsModal(element.dataset.project)) return;
+
     element.addEventListener('click', (event) => {
       event.preventDefault();
       const projectId = element.dataset.project;
@@ -221,6 +257,15 @@ function initLanguageSwitcher() {
       'nav.skills': 'Skills',
       'nav.projects': 'Projects',
       'nav.contact': 'Contact',
+      'contact.pill': 'Contact',
+      'contact.heading': "Let's Build Something <span class=\"neon-text\">Intelligent</span> Together.",
+      'contact.desc': "I'm currently open to internships, collaborative projects, and opportunities to apply AI to real problems. Feel free to reach out.",
+      'contact.emailShort': 'Email',
+      'contact.avail': 'Availability Status',
+      'contact.avail1': 'Open for AI Internships',
+      'contact.avail2': 'Collaborative Projects',
+      'contact.avail3': 'Learning Opportunities in Applied AI',
+      'contact.resume': 'Download Resume',
       'skills.pill': 'Skills',
       'skills.heading': 'Technical Expertise',
       'skills.sub': "Practical technologies I'm using and actively learning to build real, hands-on projects.",
@@ -235,11 +280,55 @@ function initLanguageSwitcher() {
       'hero.desc': 'I\'m Mammadova Lala, a second-year Artificial Intelligence &amp; Big Data student at <a href="https://home.sch.ac.kr/en/index.jsp" target="_blank" rel="noopener">Soonchunhyang University</a>, South Korea. I learn by building — real, hands-on projects rather than just theory. I\'m a member of the <a href="https://www.asiae.co.kr/en/article/2025021711292185228" target="_blank" rel="noopener">Drone Security Strategy Research Institute\'s</a> national drone security consortium, where my current project applies AI to control a drone and solve real-world problems.'
     },
     az: {
+      'hero.title': 'Məlumatları Çevirirəm',
+      'hero.contact': 'Mənimlə əlaqə saxla',
+      'hero.projects': 'Layihələrə bax',
+      'about.badge': 'Staj və layihələr üçün açığam',
+      'experience.pill': 'Təcrübə',
+      'experience.heading': 'İş Təcrübəsi',
+      'experience.sub': 'Bu hissə daha sonra yenilənəcək',
+      'experience.role': 'Süni intellekt və dron idarəetməsi üzrə könüllü',
+      'experience.org': 'Milli Dron Təhlükəsizliyi Konsorsiumu · Könüllü',
+      'experience.location': 'Soonchunhyang Universiteti, Cənubi Koreya',
+      'experience.bullet1': 'Kompüter görməsi və hərəkət izləməsindən istifadə edərək real vaxtda jestlə idarə olunan dron sistemləri qurdum.',
+      'experience.bullet2': 'Vizual girişləri sabit uçuş əmrlərinə çevirmək üçün əl və üz aşkarlama sistemlərini birləşdirdim.',
+      'experience.empty': 'Daha çox təcrübə tezliklə əlavə olunacaq.',
+      'skills.ai': 'Süni intellekt və agentlər',
+      'skills.backend': 'Backend',
+      'skills.ml': 'Maşın öyrənməsi',
+      'skills.databases': 'Verilənlər bazaları',
+      'skills.devops': 'DevOps',
+      'skills.tools': 'Alətlər',
+      'works.heading': 'Qurduqlarım',
+      'works.pill': 'Layihələr',
+      'works.sub': 'Bir tərəfdə şəxsi təcrübələrim, digər tərəfdə isə praktiki dron mühəndisliyi.',
+      'works.btn': 'Əsas işlər (buraya kliklə)',
+      'works.mine': 'Süni intellekt layihələri',
+      'works.mine1': 'Süni intellektlə Linux CLI',
+      'works.mine2': 'Real vaxtda klaviatura aşkarlanması',
+      'works.drone': 'Dron layihələri',
+      'works.drone1': 'Əl aşkarlanması ilə dronun idarə edilməsi',
+      'works.drone2': 'Üz aşkarlanması ilə dron sahibinin tapılması',
+      'drone.heading': 'Dron layihələri',
+      'drone.sub': 'Dron təyyarənin yığcam versiyası kimidir. Onun tam potensialı onu necə idarə etdiyinizdən asılıdır. Dronlarla idarəetməni ələ ala, dəqiq manevrlər edə, kompüter görməsi sistemləri ilə əlaqə qura və qabaqcıl riyaziyyatla kodun yaratdığı sonsuz imkanları kəşf edə bilərsiniz.',
       'nav.about': 'Haqqımda',
       'nav.experience': 'Təcrübə',
       'nav.skills': 'Bacarıqlar',
       'nav.projects': 'Layihələr',
       'nav.contact': 'Əlaqə',
+      'contact.pill': 'Əlaqə',
+      'contact.heading': "Gəlin Birlikdə <span class=\"neon-text\">İntellektual</span> Bir Şey Yarataq.",
+      'contact.desc': 'Hazırda praktiki AI layihələri, məktəb stajları və əməkdaşlıq üçün açığıq. Mənimlə əlaqə saxlamağı xoşlayacaqsınız.',
+      'contact.emailShort': 'Email',
+      'contact.download': 'Yüklə',
+      'contact.downloadTooltip': 'Ölçü: 20 MB',
+      'contact.avail': 'Mövcudluq Vəziyyəti',
+      'contact.avail1': 'AI Stajları üçün açıq',
+      'contact.avail2': 'Əməkdaşlıq Layihələri',
+      'contact.avail3': 'Tətbiq edilmiş AI üzrə öyrənmə imkanları',
+      'contact.resume': 'CV Yüklə',
+      'modal.project': 'Layihə',
+      'modal.source': 'Mənbə kodu',
       'skills.pill': 'Bacarıqlar',
       'skills.heading': 'Texniki Bacarıqlar',
       'skills.sub': 'Real, praktiki layihələr qurmaq üçün istifadə etdiyim və aktiv öyrəndiyim texnologiyalar.',
@@ -254,11 +343,55 @@ function initLanguageSwitcher() {
       'hero.desc': 'Mən Məmmədova Lalayam, Cənubi Koreyada, <a href="https://home.sch.ac.kr/en/index.jsp" target="_blank" rel="noopener">Soonchunhyang Universitetində</a> Süni İntellekt və Big Data üzrə 2-ci kurs tələbəsiyəm. Öyrənməyi real, praktiki layihələr qurmaqla edirəm — sadəcə nəzəriyyə ilə deyil. <a href="https://www.asiae.co.kr/en/article/2025021711292185228" target="_blank" rel="noopener">Dron Təhlükəsizliyi Strategiyası Tədqiqat İnstitutunun</a> milli dron təhlükəsizliyi konsorsiumunun üzvüyəm və hazırkı layihəm dronu idarə etmək və real problemləri həll etmək üçün süni intellekt tətbiq etməkdir.'
     },
     ko: {
+      'hero.title': '데이터를 바꾸어',
+      'hero.contact': '연락하기',
+      'hero.projects': '프로젝트 보기',
+      'about.badge': '인턴십 및 프로젝트 참여 가능',
+      'experience.pill': '경력',
+      'experience.heading': '업무 경험',
+      'experience.sub': '이 부분은 나중에 수정할 예정입니다',
+      'experience.role': 'AI 및 드론 제어 자원봉사자',
+      'experience.org': '국가 드론 보안 컨소시엄 · 자원봉사',
+      'experience.location': '순천향대학교, 대한민국',
+      'experience.bullet1': '컴퓨터 비전과 동작 추적을 활용해 실시간 제스처 기반 드론 제어 시스템을 구축했습니다.',
+      'experience.bullet2': '손과 얼굴 인식 파이프라인을 결합해 시각 입력을 안정적인 비행 명령으로 변환했습니다.',
+      'experience.empty': '더 많은 경력이 곧 추가됩니다.',
+      'skills.ai': 'AI 및 에이전트',
+      'skills.backend': '백엔드',
+      'skills.ml': '머신러닝',
+      'skills.databases': '데이터베이스',
+      'skills.devops': 'DevOps',
+      'skills.tools': '도구',
+      'works.heading': '제가 만든 것들',
+      'works.pill': '프로젝트',
+      'works.sub': '한쪽에는 개인 실험을, 다른 한쪽에는 실전 드론 엔지니어링을 담았습니다.',
+      'works.btn': '주요 작업 (클릭하세요)',
+      'works.mine': 'AI 프로젝트',
+      'works.mine1': 'AI 기반 Linux CLI',
+      'works.mine2': '실시간 키보드 인식',
+      'works.drone': '드론 프로젝트',
+      'works.drone1': '손 인식으로 드론 제어하기',
+      'works.drone2': '얼굴 인식으로 드론 소유자 찾기',
+      'drone.heading': '드론 프로젝트',
+      'drone.sub': '드론은 비행기의 소형 버전과 같습니다. 드론의 잠재력은 어떻게 제어하느냐에 달려 있습니다. 드론을 조종하고 정밀한 동작을 수행하며 컴퓨터 비전 시스템과 연동하고, 고급 수학과 코드가 열어 주는 무한한 가능성을 탐험할 수 있습니다.',
       'nav.about': '소개',
       'nav.experience': '경력',
       'nav.skills': '기술',
       'nav.projects': '프로젝트',
       'nav.contact': '연락처',
+      'contact.pill': '연락처',
+      'contact.heading': "함께 <span class=\"neon-text\">지능형</span> 프로젝트를 만들어보아요.",
+      'contact.desc': '현재 AI 인턴십, 협업 프로젝트, 실전 문제 해결을 위한 기회를 환영합니다. 언제든 편하게 연락 주세요.',
+      'contact.emailShort': '메일',
+      'contact.download': '다운로드',
+      'contact.downloadTooltip': '크기: 20MB',
+      'contact.avail': '상태',
+      'contact.avail1': 'AI 인턴십 참여 가능',
+      'contact.avail2': '협업 프로젝트',
+      'contact.avail3': '적용형 AI 학습 기회',
+      'contact.resume': '이력서 다운로드',
+      'modal.project': '프로젝트',
+      'modal.source': '소스 코드',
       'skills.pill': '기술',
       'skills.heading': '기술 스택',
       'skills.sub': '실제 프로젝트를 만들기 위해 사용하고 있고, 적극적으로 배우고 있는 기술들입니다.',
@@ -284,16 +417,31 @@ function initLanguageSwitcher() {
 
   function applyLanguage(lang) {
     const dict = TRANSLATIONS[lang] || TRANSLATIONS.en;
+    activeLanguage = lang;
 
     document.querySelectorAll('[data-i18n]').forEach((el) => {
       const key = el.getAttribute('data-i18n');
-      if (dict[key]) el.textContent = dict[key];
+      if (!el.dataset.defaultText) el.dataset.defaultText = el.textContent;
+      el.textContent = dict[key] || el.dataset.defaultText;
     });
 
     document.querySelectorAll('[data-i18n-html]').forEach((el) => {
       const key = el.getAttribute('data-i18n-html');
-      if (dict[key]) el.innerHTML = dict[key];
+      if (!el.dataset.defaultHtml) el.dataset.defaultHtml = el.innerHTML;
+      el.innerHTML = dict[key] || el.dataset.defaultHtml;
     });
+
+    document.querySelectorAll('[data-i18n-tooltip]').forEach((el) => {
+      const key = el.getAttribute('data-i18n-tooltip');
+      if (!el.dataset.defaultTooltip) el.dataset.defaultTooltip = el.getAttribute('data-tooltip');
+      el.setAttribute('data-tooltip', dict[key] || el.dataset.defaultTooltip);
+    });
+
+    typewriterTexts = lang === 'az'
+      ? ['Fəaliyyət', 'İntellekt', 'Avtomatlaşdırma', 'Proqnozlar']
+      : lang === 'ko'
+        ? ['실행', '지능', '자동화', '예측']
+        : ['Action', 'Intelligence', 'Automation', 'Predictions'];
 
     langBtnLabel.textContent = lang.toUpperCase();
     options.forEach((option) => {
@@ -853,6 +1001,194 @@ function initAboutCarousel() {
     aboutSection.removeEventListener('mouseleave', onLeave);
     aboutSection.removeEventListener('touchmove', onMove);
     aboutSection.removeEventListener('touchend', onLeave);
+  };
+})();
+
+/* Kinetic grid background for the Contact section */
+(function () {
+  if (!contactSection || !contactCanvas) return;
+
+  const ctx = contactCanvas.getContext('2d');
+  if (!ctx) return;
+
+  const GAP = 40;
+  const RADIUS = 220;
+  const PULL = 0.4;
+  const getColorVar = (name) =>
+    getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
+  const glowColor = getColorVar('--glow-color') || '57, 255, 20';
+  const dotColor = getColorVar('--dot-color') || '#888';
+  const lineColor = `rgba(${glowColor}, 0.72)`;
+  const trailColor = `rgba(${glowColor}, 0.95)`;
+
+  const mouse = { x: -9999, y: -9999, active: false };
+  const trail = [];
+  let W = 1;
+  let H = 1;
+  let cols = [];
+  let dots = [];
+  let raf = 0;
+
+  function build() {
+    const rect = contactSection.getBoundingClientRect();
+    W = Math.max(1, Math.floor(rect.width));
+    H = Math.max(1, Math.floor(rect.height));
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    contactCanvas.width = Math.floor(W * dpr);
+    contactCanvas.height = Math.floor(H * dpr);
+    contactCanvas.style.width = W + 'px';
+    contactCanvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    cols = [];
+    dots = [];
+    const columns = Math.floor(W / GAP) + 2;
+    const rows = Math.floor(H / GAP) + 2;
+    for (let colIndex = 0; colIndex < columns; colIndex++) {
+      const column = [];
+      for (let rowIndex = 0; rowIndex < rows; rowIndex++) {
+        const dot = { hx: colIndex * GAP, hy: rowIndex * GAP, x: colIndex * GAP, y: rowIndex * GAP, vx: 0, vy: 0 };
+        column.push(dot);
+        dots.push(dot);
+      }
+      cols.push(column);
+    }
+  }
+
+  function setMouse(clientX, clientY) {
+    const rect = contactCanvas.getBoundingClientRect();
+    mouse.x = clientX - rect.left;
+    mouse.y = clientY - rect.top;
+    mouse.active = true;
+    trail.push({ x: mouse.x, y: mouse.y, t: performance.now() });
+    if (trail.length > 80) trail.shift();
+  }
+
+  function onMove(event) {
+    if (event.touches?.[0]) {
+      setMouse(event.touches[0].clientX, event.touches[0].clientY);
+    } else {
+      setMouse(event.clientX, event.clientY);
+    }
+  }
+
+  function onLeave() {
+    mouse.active = false;
+    mouse.x = -9999;
+    mouse.y = -9999;
+  }
+
+  function frame() {
+    ctx.clearRect(0, 0, W, H);
+
+    for (const dot of dots) {
+      let ax = (dot.hx - dot.x) * 0.08;
+      let ay = (dot.hy - dot.y) * 0.08;
+      if (mouse.active) {
+        const dx = mouse.x - dot.x;
+        const dy = mouse.y - dot.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < RADIUS && dist > 0.001) {
+          const force = (1 - dist / RADIUS) * PULL;
+          ax += (dx / dist) * force;
+          ay += (dy / dist) * force;
+        }
+      }
+      dot.vx = (dot.vx + ax) * 0.82;
+      dot.vy = (dot.vy + ay) * 0.82;
+      dot.x += dot.vx;
+      dot.y += dot.vy;
+    }
+
+    for (let colIndex = 0; colIndex < cols.length; colIndex++) {
+      for (let rowIndex = 0; rowIndex < cols[colIndex].length; rowIndex++) {
+        const dot = cols[colIndex][rowIndex];
+        const right = cols[colIndex + 1]?.[rowIndex];
+        const down = cols[colIndex]?.[rowIndex + 1];
+        const proximity = mouse.active
+          ? Math.max(0, 1 - Math.hypot(mouse.x - dot.x, mouse.y - dot.y) / RADIUS)
+          : 0;
+
+        ctx.strokeStyle = lineColor;
+        ctx.lineWidth = 0.5 + proximity * 1.2;
+        ctx.globalAlpha = 0.08 + proximity * 0.6;
+
+        if (right) {
+          ctx.beginPath();
+          ctx.moveTo(dot.x, dot.y);
+          ctx.lineTo(right.x, right.y);
+          ctx.stroke();
+        }
+        if (down) {
+          ctx.beginPath();
+          ctx.moveTo(dot.x, dot.y);
+          ctx.lineTo(down.x, down.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    ctx.globalAlpha = 1;
+    for (const dot of dots) {
+      const proximity = mouse.active
+        ? Math.max(0, 1 - Math.hypot(mouse.x - dot.x, mouse.y - dot.y) / RADIUS)
+        : 0;
+      ctx.fillStyle = dotColor;
+      ctx.globalAlpha = 0.18 + proximity * 0.72;
+      ctx.beginPath();
+      ctx.arc(dot.x, dot.y, 1.2 + proximity * 1.6, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    if (trail.length > 1) {
+      const now = performance.now();
+      ctx.strokeStyle = trailColor;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      for (let i = 1; i < trail.length; i++) {
+        const a = trail[i - 1];
+        const b = trail[i];
+        const age = now - b.t;
+        if (age > 260) continue;
+        ctx.globalAlpha = Math.max(0, 1 - age / 260) * 0.65;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    raf = requestAnimationFrame(frame);
+  }
+
+  build();
+  frame();
+
+  const ro = typeof ResizeObserver !== 'undefined'
+    ? new ResizeObserver((entries) => {
+        const cr = entries[0]?.contentRect;
+        if (cr) build();
+      })
+    : null;
+
+  ro?.observe(contactSection);
+  contactSection.addEventListener('mousemove', onMove);
+  contactSection.addEventListener('mouseleave', onLeave);
+  contactSection.addEventListener('touchmove', onMove, { passive: true });
+  contactSection.addEventListener('touchend', onLeave);
+  window.addEventListener('resize', build);
+
+  return () => {
+    cancelAnimationFrame(raf);
+    ro?.disconnect();
+    contactSection.removeEventListener('mousemove', onMove);
+    contactSection.removeEventListener('mouseleave', onLeave);
+    contactSection.removeEventListener('touchmove', onMove);
+    contactSection.removeEventListener('touchend', onLeave);
+    window.removeEventListener('resize', build);
   };
 })();
 
