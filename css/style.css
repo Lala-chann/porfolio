@@ -759,17 +759,18 @@ nav{
 }
 .drone-projects-heading{
   text-align: left;
-  font-size: 22px;
+  font-size: 40px;
   font-weight: 700;
   margin: 0 0 18px;
 }
 .drone-projects-sub{
   text-align: left;
   color: var(--text-dim);
-  font-size: 13.5px;
+  font-size: 18px;
   line-height: 1.7;
   margin: 18px 0 0;
   max-width: 360px;
+  text-align: justify;
 }
 .drone-gallery-wrap{
   width: 100%;
