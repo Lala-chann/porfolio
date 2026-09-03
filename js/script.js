@@ -142,12 +142,6 @@ function initProjectModal() {
       tags: ['Python', 'Groq API', 'CLI', 'AI'],
       link: 'https://github.com/Lala-chann/Linux-AI',
       linkText: 'Open source',
-      az: {
-        badge: 'Süni intellekt layihəsi',
-        title: 'Süni intellektlə Linux CLI assistenti',
-        description: 'Groq API vasitəsilə LLM-dən istifadə edərək Linux və terminal suallarına cavab verən komanda sətri aləti. Sadə dildə soruşun, dəqiq əmri və qısa izahı əldə edin; alət əmrləri özü icra etmir.',
-        linkText: 'Mənbə kodu'
-      },
       ko: {
         badge: '인공지능 프로젝트',
         title: 'AI 기반 리눅스 CLI 도우미',
@@ -162,12 +156,6 @@ function initProjectModal() {
       tags: ['Python', 'MediaPipe', 'OpenCV', 'Computer Vision'],
       link: 'https://github.com/Lala-chann/Real-Time-Keyboard-Detection',
       linkText: 'Open source',
-      az: {
-        badge: 'Görüntü layihəsi',
-        title: 'Virtual əl izləmə klaviaturası',
-        description: 'MediaPipe və OpenCV ilə hazırlanmış real vaxt klaviatura sistemi. Əl nöqtələrini izləyir və barmaq hərəkəti ilə virtual düymələrə basmağa imkan verir.',
-        linkText: 'Mənbə kodu'
-      },
       ko: {
         badge: '컴퓨터 비전 프로젝트',
         title: '가상 손 추적 키보드',
@@ -279,69 +267,6 @@ function initLanguageSwitcher() {
       'proj.upcoming.desc': 'This space is reserved for what I build next.',
       'hero.desc': 'I\'m Mammadova Lala, a second-year Artificial Intelligence &amp; Big Data student at <a href="https://home.sch.ac.kr/en/index.jsp" target="_blank" rel="noopener">Soonchunhyang University</a>, South Korea. I learn by building — real, hands-on projects rather than just theory. I\'m a member of the <a href="https://www.asiae.co.kr/en/article/2025021711292185228" target="_blank" rel="noopener">Drone Security Strategy Research Institute\'s</a> national drone security consortium, where my current project applies AI to control a drone and solve real-world problems.'
     },
-    az: {
-      'hero.title': 'Məlumatları Çevirirəm',
-      'hero.contact': 'Mənimlə əlaqə saxla',
-      'hero.projects': 'Layihələrə bax',
-      'about.badge': 'Staj və layihələr üçün açığam',
-      'experience.pill': 'Təcrübə',
-      'experience.heading': 'İş Təcrübəsi',
-      'experience.sub': 'Bu hissə daha sonra yenilənəcək',
-      'experience.role': 'Süni intellekt və dron idarəetməsi üzrə könüllü',
-      'experience.org': 'Milli Dron Təhlükəsizliyi Konsorsiumu · Könüllü',
-      'experience.location': 'Soonchunhyang Universiteti, Cənubi Koreya',
-      'experience.bullet1': 'Kompüter görməsi və hərəkət izləməsindən istifadə edərək real vaxtda jestlə idarə olunan dron sistemləri qurdum.',
-      'experience.bullet2': 'Vizual girişləri sabit uçuş əmrlərinə çevirmək üçün əl və üz aşkarlama sistemlərini birləşdirdim.',
-      'experience.empty': 'Daha çox təcrübə tezliklə əlavə olunacaq.',
-      'skills.ai': 'Süni intellekt və agentlər',
-      'skills.backend': 'Backend',
-      'skills.ml': 'Maşın öyrənməsi',
-      'skills.databases': 'Verilənlər bazaları',
-      'skills.devops': 'DevOps',
-      'skills.tools': 'Alətlər',
-      'works.heading': 'Qurduqlarım',
-      'works.pill': 'Layihələr',
-      'works.sub': 'Bir tərəfdə şəxsi təcrübələrim, digər tərəfdə isə praktiki dron mühəndisliyi.',
-      'works.btn': 'Əsas işlər (buraya kliklə)',
-      'works.mine': 'Süni intellekt layihələri',
-      'works.mine1': 'Süni intellektlə Linux CLI',
-      'works.mine2': 'Real vaxtda klaviatura aşkarlanması',
-      'works.drone': 'Dron layihələri',
-      'works.drone1': 'Əl aşkarlanması ilə dronun idarə edilməsi',
-      'works.drone2': 'Üz aşkarlanması ilə dron sahibinin tapılması',
-      'drone.heading': 'Dron layihələri',
-      'drone.sub': 'Dron təyyarənin yığcam versiyası kimidir. Onun tam potensialı onu necə idarə etdiyinizdən asılıdır. Dronlarla idarəetməni ələ ala, dəqiq manevrlər edə, kompüter görməsi sistemləri ilə əlaqə qura və qabaqcıl riyaziyyatla kodun yaratdığı sonsuz imkanları kəşf edə bilərsiniz.',
-      'nav.about': 'Haqqımda',
-      'nav.experience': 'Təcrübə',
-      'nav.skills': 'Bacarıqlar',
-      'nav.projects': 'Layihələr',
-      'nav.contact': 'Əlaqə',
-      'contact.pill': 'Əlaqə',
-      'contact.heading': "Gəlin Birlikdə <span class=\"neon-text\">İntellektual</span> Bir Şey Yarataq.",
-      'contact.desc': 'Hazırda praktiki AI layihələri, məktəb stajları və əməkdaşlıq üçün açığıq. Mənimlə əlaqə saxlamağı xoşlayacaqsınız.',
-      'contact.emailShort': 'Email',
-      'contact.download': 'Yüklə',
-      'contact.downloadTooltip': 'Ölçü: 20 MB',
-      'contact.avail': 'Mövcudluq Vəziyyəti',
-      'contact.avail1': 'AI Stajları üçün açıq',
-      'contact.avail2': 'Əməkdaşlıq Layihələri',
-      'contact.avail3': 'Tətbiq edilmiş AI üzrə öyrənmə imkanları',
-      'contact.resume': 'CV Yüklə',
-      'modal.project': 'Layihə',
-      'modal.source': 'Mənbə kodu',
-      'skills.pill': 'Bacarıqlar',
-      'skills.heading': 'Texniki Bacarıqlar',
-      'skills.sub': 'Real, praktiki layihələr qurmaq üçün istifadə etdiyim və aktiv öyrəndiyim texnologiyalar.',
-      'skills.upcoming': 'Tezliklə — növbəti öyrənəcəyim',
-      'proj.source': 'Mənbə Kodu',
-      'proj.linux.title': 'AI ilə işləyən Linux CLI Assistenti',
-      'proj.linux.desc': 'Groq API vasitəsilə LLM-dən istifadə edən Linux/CLI suallarına cavab verən terminal aləti. Sadə ingiliscə soruşun, dəqiq əmri və qısa izahı alın — özü heç vaxt heç nə icra etmir.',
-      'proj.kb.title': 'Virtual Əl İzləmə Klaviaturası',
-      'proj.kb.desc': 'MediaPipe və OpenCV ilə qurulmuş virtual klaviatura. O, real vaxtda 21 əl markerini izləyir və istifadəçi index barmağı ilə düymələri "basır" — virtual klaviaturadan birbaşa tətbiqləri də işə sala bilir.',
-      'proj.upcoming.title': 'Daha çox layihə yaxın zamanda',
-      'proj.upcoming.desc': 'Bu yer növbəti qurduğum layihələr üçün ayrılıb.',
-      'hero.desc': 'Mən Məmmədova Lalayam, Cənubi Koreyada, <a href="https://home.sch.ac.kr/en/index.jsp" target="_blank" rel="noopener">Soonchunhyang Universitetində</a> Süni İntellekt və Big Data üzrə 2-ci kurs tələbəsiyəm. Öyrənməyi real, praktiki layihələr qurmaqla edirəm — sadəcə nəzəriyyə ilə deyil. <a href="https://www.asiae.co.kr/en/article/2025021711292185228" target="_blank" rel="noopener">Dron Təhlükəsizliyi Strategiyası Tədqiqat İnstitutunun</a> milli dron təhlükəsizliyi konsorsiumunun üzvüyəm və hazırkı layihəm dronu idarə etmək və real problemləri həll etmək üçün süni intellekt tətbiq etməkdir.'
-    },
     ko: {
       'hero.title': '데이터를 바꾸어',
       'hero.contact': '연락하기',
@@ -437,9 +362,7 @@ function initLanguageSwitcher() {
       el.setAttribute('data-tooltip', dict[key] || el.dataset.defaultTooltip);
     });
 
-    typewriterTexts = lang === 'az'
-      ? ['Fəaliyyət', 'İntellekt', 'Avtomatlaşdırma', 'Proqnozlar']
-      : lang === 'ko'
+    typewriterTexts = lang === 'ko'
         ? ['실행', '지능', '자동화', '예측']
         : ['Action', 'Intelligence', 'Automation', 'Predictions'];
 
