@@ -139,13 +139,27 @@ function initProjectModal() {
       badge: 'AI project',
       title: 'AI-Powered Linux CLI Assistant',
       description: 'A command-line tool that answers Linux and terminal questions using an LLM via the Groq API. It turns plain English prompts into exact commands with a short explanation, without executing anything on its own.',
-      tags: ['Python', 'Groq API', 'CLI', 'AI'],
+      tags: ['Python', 'Groq API', 'CLI', 'AI', 'Linux'],
       link: 'https://github.com/Lala-chann/Linux-AI',
       linkText: 'Open source',
       ko: {
         badge: '인공지능 프로젝트',
         title: 'AI 기반 리눅스 CLI 도우미',
         description: 'Groq API의 LLM을 활용해 Linux와 터미널 질문에 답하는 명령줄 도구입니다. 자연어로 질문하면 정확한 명령과 간단한 설명을 제공하며, 명령을 직접 실행하지 않습니다.',
+        linkText: '소스 코드'
+      }
+    },
+    pipeline: {
+      badge: 'AI project',
+      title: 'Document Intelligence Pipeline',
+      description: 'An AI/ML-powered ticket classification API that uses SVM and Claude to predict support ticket priority from subject, body, and queue.',
+      tags: ['Python', 'SVM', 'Claude API', 'FastAPI', 'Docker', 'CI/CD'],
+      link: 'https://github.com/Lala-chann/Document-Intelligence-Pipeline/tree/main',
+      linkText: 'Open source',
+      ko: {
+        badge: '인공지능 프로젝트',
+        title: '문서 인텔리전스 파이프라인',
+        description: 'SVM과 Claude를 활용해 제목, 본문, 대기열 정보로 지원 티켓 우선순위를 예측하는 AI/ML 기반 티켓 분류 API입니다.',
         linkText: '소스 코드'
       }
     },
@@ -162,14 +176,6 @@ function initProjectModal() {
         description: 'MediaPipe와 OpenCV로 만든 실시간 키보드 시스템입니다. 손 랜드마크를 추적해 손가락 움직임으로 가상 키를 누르고 애플리케이션을 실행할 수 있습니다.',
         linkText: '소스 코드'
       }
-    },
-    drone: {
-      badge: 'Drone project',
-      title: 'Drone Control with Hand and Face Detection',
-      description: 'This project combines gesture-based controls with facial recognition to guide a drone and identify the owner using computer vision. It blends low-level flight logic with AI-assisted interaction.',
-      tags: ['DroneKit', 'OpenCV', 'DeepFace', 'Raspberry Pi'],
-      link: '#',
-      linkText: 'See project'
     }
   };
 
@@ -212,10 +218,11 @@ function initProjectModal() {
     });
   });
 
-  document.querySelectorAll('[data-project]').forEach((element) => {
+  document.querySelectorAll('.project-card[data-project]').forEach((element) => {
     if (!supportsModal(element.dataset.project)) return;
 
     element.addEventListener('click', (event) => {
+      if (event.target.closest('a')) return;
       event.preventDefault();
       const projectId = element.dataset.project;
       if (projectId) {
@@ -263,8 +270,8 @@ function initLanguageSwitcher() {
       'proj.linux.desc': 'A command-line tool that answers Linux/CLI questions using an LLM via the Groq API. Ask in plain English, get back the exact command and a short explanation — it never executes anything on its own.',
       'proj.kb.title': 'Virtual Hand-Tracking Keyboard',
       'proj.kb.desc': 'A virtual keyboard built with MediaPipe and OpenCV. It tracks 21 hand landmarks in real time so users can "press" keys with their index finger — and launch applications directly from the virtual keyboard.',
-      'proj.upcoming.title': 'More Projects Coming Soon',
-      'proj.upcoming.desc': 'This space is reserved for what I build next.',
+      'proj.pipeline.title': 'Document Intelligence Pipeline',
+      'proj.pipeline.desc': 'An AI/ML-powered ticket classification API that uses SVM and Claude to predict support ticket priority from subject, body, and queue.',
       'hero.desc': 'I\'m Mammadova Lala, a second-year Artificial Intelligence &amp; Big Data student at <a href="https://home.sch.ac.kr/en/index.jsp" target="_blank" rel="noopener">Soonchunhyang University</a>, South Korea. I learn by building — real, hands-on projects rather than just theory. I\'m a member of the <a href="https://www.asiae.co.kr/en/article/2025021711292185228" target="_blank" rel="noopener">Drone Security Strategy Research Institute\'s</a> national drone security consortium, where my current project applies AI to control a drone and solve real-world problems.'
     },
     ko: {
@@ -289,16 +296,14 @@ function initLanguageSwitcher() {
       'skills.tools': '도구',
       'works.heading': '제가 만든 것들',
       'works.pill': '프로젝트',
-      'works.sub': '한쪽에는 개인 실험을, 다른 한쪽에는 실전 드론 엔지니어링을 담았습니다.',
+      'works.sub': '직접 만든 AI 프로젝트와 실험, 도구를 모았습니다.',
       'works.btn': '주요 작업 (클릭하세요)',
       'works.mine': 'AI 프로젝트',
       'works.mine1': 'AI 기반 Linux CLI',
       'works.mine2': '실시간 키보드 인식',
+      'works.pipeline': '문서 인텔리전스 파이프라인',
       'works.drone': '드론 프로젝트',
       'works.drone1': '손 인식으로 드론 제어하기',
-      'works.drone2': '얼굴 인식으로 드론 소유자 찾기',
-      'drone.heading': '드론 프로젝트',
-      'drone.sub': '드론은 비행기의 소형 버전과 같습니다. 드론의 잠재력은 어떻게 제어하느냐에 달려 있습니다. 드론을 조종하고 정밀한 동작을 수행하며 컴퓨터 비전 시스템과 연동하고, 고급 수학과 코드가 열어 주는 무한한 가능성을 탐험할 수 있습니다.',
       'nav.about': '소개',
       'nav.experience': '경력',
       'nav.skills': '기술',
@@ -326,8 +331,8 @@ function initLanguageSwitcher() {
       'proj.linux.desc': 'Groq API를 활용하는 LLM으로 Linux/CLI 질문에 답하는 CLI 도구입니다. 평문으로 질문하면 정확한 명령과 짧은 설명을 받아볼 수 있으며, 스스로 실행하진 않습니다.',
       'proj.kb.title': '가상 손 추적 키보드',
       'proj.kb.desc': 'MediaPipe와 OpenCV로 만든 가상 키보드입니다. 실시간으로 21개의 손 랜드마크를 추적해 검지로 키를 누르며, 가상 키보드에서 직접 애플리케이션을 실행할 수 있습니다.',
-      'proj.upcoming.title': '추가 프로젝트 공개 예정',
-      'proj.upcoming.desc': '다음에 만드는 프로젝트를 위해 이 공간을 남겨두고 있습니다.',
+      'proj.pipeline.title': '문서 인텔리전스 파이프라인',
+      'proj.pipeline.desc': 'SVM과 Claude를 활용해 제목, 본문, 대기열 정보로 지원 티켓 우선순위를 예측하는 AI/ML 기반 티켓 분류 API입니다.',
       'hero.desc': '저는 맘마도바 랄라이며, 한국 <a href="https://home.sch.ac.kr/en/index.jsp" target="_blank" rel="noopener">순천향대학교</a>에서 인공지능 및 빅데이터를 전공하는 2학년 학생입니다. 저는 이론보다 실제 프로젝트를 직접 만들며 배웁니다. 저는 <a href="https://www.asiae.co.kr/en/article/2025021711292185228" target="_blank" rel="noopener">드론 보안 전략 연구소</a>의 국가 드론 보안 컨소시엄 회원이며, 현재 AI를 활용해 드론을 제어하고 실제 문제를 해결하는 프로젝트를 진행하고 있습니다.'
     }
   };
@@ -445,144 +450,6 @@ function initAboutCarousel() {
 
   setActiveIndex(0);
 }
-
-(function () {
-  const container = document.getElementById('droneCarousel');
-  const backdrop = document.getElementById('droneBackdrop');
-  if (!container || !backdrop) return;
-
-  const bars = Array.from(container.querySelectorAll('.magnetic-bar'));
-  const n = bars.length;
-
-  const COLLAPSED_W = 120;
-  const HOVER_W = 200;
-  const COLLAPSED_H = 320;
-  const HOVER_H = 360;
-  const GAP = 18;
-  const INFLUENCE = 210;
-  const OPEN_SIZE = 520;
-
-  let target = bars.map(() => 0);
-  let cur = bars.map(() => 0);
-  let raf = null;
-  let openIndex = null;
-  let closeTimer = null;
-
-  function applySizes() {
-    bars.forEach((bar, i) => {
-      let w;
-      let h;
-      if (openIndex !== null) {
-        if (i === openIndex) {
-          w = OPEN_SIZE;
-          h = OPEN_SIZE;
-        } else {
-          w = COLLAPSED_W;
-          h = COLLAPSED_H;
-        }
-      } else {
-        const f = cur[i] || 0;
-        w = COLLAPSED_W + (HOVER_W - COLLAPSED_W) * f;
-        h = COLLAPSED_H + (HOVER_H - COLLAPSED_H) * f;
-      }
-      bar.style.width = `${w}px`;
-      bar.style.height = `${h}px`;
-    });
-  }
-
-  function loop() {
-    let moving = false;
-    for (let i = 0; i < n; i++) {
-      const d = (target[i] || 0) - cur[i];
-      if (Math.abs(d) > 0.001) {
-        cur[i] += d * 0.2;
-        moving = true;
-      } else {
-        cur[i] = target[i] || 0;
-      }
-    }
-    applySizes();
-    raf = moving ? requestAnimationFrame(loop) : null;
-  }
-
-  function ensureLoop() {
-    if (!raf) raf = requestAnimationFrame(loop);
-  }
-
-  function setTargetFromCursor(clientX) {
-    const rect = container.getBoundingClientRect();
-    const cx = clientX - rect.left;
-    const totalBase = n * COLLAPSED_W + (n - 1) * GAP;
-    const startX = (rect.width - totalBase) / 2;
-    target = bars.map((_, i) => {
-      const center = startX + i * (COLLAPSED_W + GAP) + COLLAPSED_W / 2;
-      const dist = Math.abs(cx - center);
-      const f = Math.max(0, 1 - dist / INFLUENCE);
-      return f * f * (3 - 2 * f);
-    });
-    ensureLoop();
-  }
-
-  container.addEventListener('mousemove', (event) => {
-    if (openIndex !== null) return;
-    setTargetFromCursor(event.clientX);
-  });
-
-  container.addEventListener('mouseleave', () => {
-    if (openIndex !== null) return;
-    target = bars.map(() => 0);
-    ensureLoop();
-  });
-
-  function enableTransition() {
-    bars.forEach((bar) => {
-      bar.style.transition = 'width 0.3s ease-in-out, height 0.3s ease-in-out, filter 0.3s ease-in-out, opacity 0.3s ease-in-out';
-    });
-  }
-
-  function disableTransition() {
-    bars.forEach((bar) => {
-      bar.style.transition = 'none';
-    });
-  }
-
-  function openBar(index) {
-    enableTransition();
-    openIndex = index;
-    backdrop.classList.add('active');
-    bars.forEach((bar, idx) => {
-      bar.classList.toggle('open', idx === index);
-      bar.classList.toggle('blurred', idx !== index);
-    });
-    applySizes();
-  }
-
-  function closeBar() {
-    enableTransition();
-    openIndex = null;
-    backdrop.classList.remove('active');
-    bars.forEach((bar) => bar.classList.remove('open', 'blurred'));
-    target = bars.map(() => 0);
-    cur = bars.map(() => 0);
-    applySizes();
-    clearTimeout(closeTimer);
-    closeTimer = setTimeout(disableTransition, 320);
-  }
-
-  bars.forEach((bar, i) => {
-    bar.addEventListener('click', (event) => {
-      event.stopPropagation();
-      if (openIndex === i) {
-        closeBar();
-      } else {
-        openBar(i);
-      }
-    });
-  });
-
-  backdrop.addEventListener('click', closeBar);
-  applySizes();
-})();
 
 /* ASCII rain background for the hero section */
 (function () {

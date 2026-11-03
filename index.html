@@ -281,7 +281,7 @@
       <canvas class="works-network" id="worksNetwork" aria-hidden="true"></canvas>
       <h2 class="skills-heading" data-i18n="works.heading">What I've Built</h2>
       <span class="label-pill" data-i18n="works.pill">Projects</span>
-      <p class="skills-sub" data-i18n="works.sub">Personal experiments on one side, hands-on drone engineering on the other.</p>
+      <p class="skills-sub" data-i18n="works.sub">A collection of AI projects, experiments, and tools I've built.</p>
 
       <div class="tooltip-container">
         <div class="trigger-wrapper">
@@ -334,6 +334,7 @@
             <ul class="tooltip-list">
               <li data-project="linux" data-project-link data-i18n="works.mine1">AI-powered Linux CLI</li>
               <li data-project="keyboard" data-project-link data-i18n="works.mine2">Real-time keyboard detection</li>
+              <li data-project="pipeline" data-project-link data-i18n="works.pipeline">Document Intelligence Pipeline</li>
             </ul>
           </div>
 
@@ -348,7 +349,6 @@
             </div>
             <ul class="tooltip-list">
               <li data-project="drone" data-project-link data-i18n="works.drone1">Controlling drone with hand detection</li>
-              <li data-project="drone" data-project-link data-i18n="works.drone2">Finding drone's owner with face detection</li>
             </ul>
           </div>
         </div>
@@ -368,6 +368,8 @@ a file from the system.</div>
               <span class="project-tag">Python</span>
               <span class="project-tag">Groq API</span>
               <span class="project-tag">CLI</span>
+              <span class="project-tag">AI</span>
+              <span class="project-tag">Linux</span>
             </div>
             <a class="project-source" href="https://github.com/Lala-chann/Linux-AI" target="_blank" rel="noopener">
               <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
@@ -399,40 +401,25 @@ a file from the system.</div>
           </div>
         </div>
 
-        <div class="project-card upcoming">
-          <div class="project-preview upcoming-preview">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="9"></circle>
-              <line x1="12" y1="8" x2="12" y2="12"></line>
-              <line x1="12" y1="16" x2="12.01" y2="16"></line>
-            </svg>
+        <div class="project-card" data-project="pipeline">
+          <div class="project-preview project-cover-preview">
+            <img class="project-cover" src="assests/images/document-pipeline.png" alt="Document Intelligence Pipeline ticket triage dashboard">
           </div>
           <div class="project-body">
-            <h3 class="project-title" data-i18n="proj.upcoming.title">More Projects Coming Soon</h3>
-            <p class="project-desc" data-i18n="proj.upcoming.desc">This space is reserved for what I build next.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="drone-showcase">
-        <div class="drone-project-copy">
-          <h3 class="drone-projects-heading" data-i18n="drone.heading">Drone Projects</h3>
-
-          <p class="drone-projects-sub" data-i18n="drone.sub">A drone is like a compact version of an airplane. Its full potential depends on how you control it. With drones, you can take command, execute precise maneuvers, interface with computer vision systems, and discover the endless possibilities unlocked by advanced mathematics and code.</p>
-        </div>
-
-        <div class="drone-gallery-wrap">
-          <div class="magnetic-carousel" id="droneCarousel">
-            <div class="magnetic-backdrop" id="droneBackdrop"></div>
-            <div class="magnetic-bar" id="droneBar0" style="background:linear-gradient(180deg,#13273d,#0c1724);">
-              <span class="bar-label">DP1</span>
+            <h3 class="project-title" data-i18n="proj.pipeline.title">Document Intelligence Pipeline</h3>
+            <p class="project-desc" data-i18n="proj.pipeline.desc">An AI/ML-powered ticket classification API that uses SVM and Claude to predict support ticket priority from subject, body, and queue.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">SVM</span>
+              <span class="project-tag">Claude API</span>
+              <span class="project-tag">FastAPI</span>
+              <span class="project-tag">Docker</span>
+              <span class="project-tag">CI/CD</span>
             </div>
-            <div class="magnetic-bar" id="droneBar1" style="background:linear-gradient(180deg,#1b1d2a,#121722);">
-              <span class="bar-label">DP2</span>
-            </div>
-            <div class="magnetic-bar" id="droneBar2" style="background:linear-gradient(180deg,#2a1d35,#181321);">
-              <span class="bar-label">DP3</span>
-            </div>
+            <a class="project-source" href="https://github.com/Lala-chann/Document-Intelligence-Pipeline/tree/main" target="_blank" rel="noopener">
+              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+              <span data-i18n="proj.source">Source Code</span>
+            </a>
           </div>
         </div>
       </div>
