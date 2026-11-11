@@ -314,7 +314,7 @@ function initLanguageSwitcher() {
       'contact.desc': '현재 AI 인턴십, 협업 프로젝트, 실전 문제 해결을 위한 기회를 환영합니다. 언제든 편하게 연락 주세요.',
       'contact.emailShort': '메일',
       'contact.download': '다운로드',
-      'contact.downloadTooltip': '크기: 20MB',
+      'contact.downloadTooltip': '크기: 151 KB',
       'contact.avail': '상태',
       'contact.avail1': 'AI 인턴십 참여 가능',
       'contact.avail2': '협업 프로젝트',
@@ -771,10 +771,7 @@ function initAboutCarousel() {
   frame();
 
   const ro = typeof ResizeObserver !== 'undefined'
-    ? new ResizeObserver((entries) => {
-        const cr = entries[0]?.contentRect;
-        build(cr?.width, cr?.height);
-      })
+    ? new ResizeObserver(() => build())
     : null;
 
   ro?.observe(aboutSection);

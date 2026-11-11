@@ -1606,6 +1606,7 @@ body.modal-open{
   --gap-between-tooltip-to-button: 18px;
   --button-color: #1163ff;
   --tooltip-color: #fff;
+  display: block;
   width: var(--width);
   height: var(--height);
   background: var(--button-color);
@@ -1613,6 +1614,7 @@ body.modal-open{
   text-align: center;
   border-radius: 0.45em;
   font-family: "Arial";
+  text-decoration: none;
   transition: background 0.3s;
   margin: 22px 0 0;
   cursor: pointer;
